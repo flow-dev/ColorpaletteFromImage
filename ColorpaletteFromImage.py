@@ -19,6 +19,7 @@ def get_dominant_colors(infile):
 	
 	image = Image.open(infile)
 	w, h = image.size
+	print("input_img_size:",w,h)
 
 	if(w > h):
 		small_w = 100
@@ -48,6 +49,7 @@ def get_dominant_colors(infile):
 		dominant_color = palette[palette_index * 3 : palette_index * 3 + 3]
 		colors.append(tuple(dominant_color))
 
+
 	# save colorpalette full image
 	os.makedirs("colorpalette", exist_ok=True)
 	for i in range(len(colors)):
@@ -57,7 +59,9 @@ def get_dominant_colors(infile):
 		file_name = "colorpalette/" + "color_0" + str(i) + ".jpg"
 		pil_color_img.save(file_name)
 
-	#print(colors)
+	print("colorpalette:",colors)
+	print("output_colorpalette_img_size:",color_img.shape[1],color_img.shape[0],len(colors))
+
 	return colors
 
 def plot_img_tile(colors):
